@@ -2,11 +2,15 @@ import pandas as pd
 import gspread as gs
 from datetime import datetime,date
 
-from fastapi import FastAPI
+from flask import Flask
 
-app = FastAPI()
+from flask_restful import Resource, Api
 
-@app.get("/my-first-api")
+app = Flask(__name__)
+
+api = Api(app)
+
+
 def main():
     gc=gs.service_account(filename="myserviceacc.json")#to get client secrets JSON keyfile for your service account,activate google cloud API and after activation from keys find keyfile and download json file for your google account
     wb=gc.open_by_url("https://docs.google.com/spreadsheets/d/1WjbiDwgxrtP6HEBKKR6Lbz_EDefAZzaiCPS188phVpE/edit?usp=sharing")
