@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 api = Api(app)
 
-
+@app.route('/my-first-api')
 def main():
     gc=gs.service_account(filename="myserviceacc.json")#to get client secrets JSON keyfile for your service account,activate google cloud API and after activation from keys find keyfile and download json file for your google account
     wb=gc.open_by_url("https://docs.google.com/spreadsheets/d/1WjbiDwgxrtP6HEBKKR6Lbz_EDefAZzaiCPS188phVpE/edit?usp=sharing")
@@ -53,5 +53,6 @@ def main():
     df_header = df.columns.tolist()
     df_list_with_header = [df_header] + df_list
     ws.update('A1',df_list_with_header)
+
 
 #main()
